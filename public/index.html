@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LUMI 发布台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body data-host="pending">
+<header class="top"><div class="wrap top-in">
+  <a class="brand" href="#week"><span class="glint" aria-hidden="true"></span><span class="wm">LUMI</span><span class="wm-sub">发布台</span></a>
+  <nav class="tabs" aria-label="页面">
+    <a href="#week" data-tab="week">本周排期</a>
+    <a href="#assets" data-tab="assets">素材与保密</a>
+    <a href="#accounts" data-tab="accounts">产品线与账号</a>
+    <a href="#sources" data-tab="sources">进展与热点</a>
+  </nav>
+  <div class="weeknav">
+    <button class="btn sq" data-act="week" data-d="-1" aria-label="上一周">‹</button>
+    <div class="wk"><b id="wk-num"></b><span id="wk-range"></span></div>
+    <button class="btn sq" data-act="week" data-d="1" aria-label="下一周">›</button>
+    <button class="btn sm" data-act="week" data-d="0" id="wk-today">回到本周</button>
+  </div>
+  <div class="who"><div id="org-switch"></div><div id="user-btn"></div></div>
+</div></header>
+<div class="wrap">
+  <div id="notice"></div>
+  <main id="main"></main>
+  <p class="foot">这里有还没公开的资料。数据存在这个站点自己的私有存储里，只有登录后属于同一个空间的人能读到；连接平台用的令牌加密保存在服务器上，不会发到浏览器。只有管理员过完四道确认、亲手点了“发布”，内容才会发出去。</p>
+</div>
+
+<dialog class="drawer" id="ed" aria-labelledby="ed-title"></dialog>
+<dialog id="ask"></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:20px">这个页面需要开启 JavaScript。</p></noscript>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
