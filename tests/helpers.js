@@ -42,5 +42,5 @@ export function fakeFetch(rules) {
   return fetcher;
 }
 
-export const brand = { name: 'LUMI Agent', short: 'Agent', color: 'teal', terms: ['Cindy', 'GIN', '白模'] };
+export const brand = { name: 'LUMI Agent', short: 'Agent', color: 'teal', terms: ['Orca', 'ACE', '蓝鲸'] };
 export const draft = (line = 'agent') => ({ week: '2026-11-16', line, platform: 'instagram', format: 'image', hook: 'Hello.', title: 'Hi', body: 'Hello.\n\nWorld.', tags: ['#LUMI'] });

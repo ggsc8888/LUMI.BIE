@@ -626,7 +626,7 @@ function loadScript(src,key){return new Promise((resolve,reject)=>{const s=docum
   s.onload=()=>{clearTimeout(timer);resolve()};s.onerror=()=>{clearTimeout(timer);reject(Error('load'))};document.head.append(s)})}
 function mountSignIn(){
   const el=$('#signin');if(!el||!S.clerk||el.dataset.mounted)return;el.dataset.mounted='1';
-  // 邀请链接带着 __clerk_ticket：新成员走注册，已有账号的走登录。登录组件用 hash 路由，和 World Builder 一样。
+  // 邀请链接带着 __clerk_ticket：新成员走注册，已有账号的走登录。登录组件用 hash 路由。
   const q=new URLSearchParams(location.search),home=location.origin+'/';
   const signup=q.has('__clerk_ticket')?q.get('__clerk_status')!=='sign_in':location.pathname==='/sign-up';
   if(signup)S.clerk.mountSignUp(el,{routing:'hash',forceRedirectUrl:home,signInForceRedirectUrl:home});
@@ -636,7 +636,7 @@ const deniedView=()=>S.denied==='invite'
   ?`<section class="card"><h3>这个账号还没有开通</h3><p>这个发布台目前只对指定的账号或团队开放。把下面的编号发给管理员，加进允许名单之后就能用；如果你属于已开通的团队，在右上角切换到那个团队。</p><p class="num">${esc([S.clerk?.organization?.id,S.clerk?.user?.id].filter(Boolean).join(' · '))}</p></section>`
   :`<section class="card"><h3>登录没有通过校验</h3><p>${esc(S.denied||'请重新登录。')}</p><p class="muted">如果刚部署好就看到这一条：检查环境变量 LUMI_PUBLISH_ORIGIN 是不是和你现在打开的网址完全一致（包括 https 和域名），以及 CLERK_PUBLISHABLE_KEY 是不是这个站点用的那一个。</p><div class="row"><button class="btn" data-act="reload">重新加载</button></div></section>`;
 const setupView=()=>`<section class="card"><h3>还差几步配置</h3><p>部署已经在运行，但下面这些环境变量还没有填好。填完重新部署一次就能用。</p><ul class="todo">${S.missing.map(m=>`<li>${esc(m)}</li>`).join('')}</ul></section>`;
-// 和 World Builder 用同一种方式加载 Clerk：两段脚本都来自你自己的 Clerk 实例域名。
+// 加载 Clerk：两段脚本都来自你自己的 Clerk 实例域名。
 async function startClerk(cfg){
   await Promise.all([loadScript(`${cfg.issuer}/npm/@clerk/ui@1/dist/ui.browser.js`),loadScript(`${cfg.issuer}/npm/@clerk/clerk-js@6/dist/clerk.browser.js`,cfg.publishableKey)]);
   const clerk=window.Clerk;

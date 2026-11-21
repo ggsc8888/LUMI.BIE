@@ -3,7 +3,7 @@ import { generateClientTokenFromReadWriteToken } from '@vercel/blob/client';
 import { settings } from './env.js';
 import { HttpError } from './http.js';
 
-// Storage is private Vercel Blob (the same kind of store World Builder already uses). Each tenant
+// Storage is private Vercel Blob. Each tenant
 // gets one JSON file, written with an ETag precondition so two people saving at once never
 // silently overwrite each other.
 

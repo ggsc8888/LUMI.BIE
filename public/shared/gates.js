@@ -14,7 +14,7 @@ export const formatOf = name => (isFormat(name) ? FORMATS[name] : FORMATS.video)
 
 export const usable = asset => !!asset && (asset.consent === 'approved' || asset.consent === 'public');
 
-// ASCII terms match whole words only ("GIN" must not fire on "begin"); other scripts match anywhere.
+// ASCII terms match whole words only ("ACE" must not fire on "race"); other scripts match anywhere.
 export function termRe(term) {
   const t = String(term || '').trim();
   if (!t) return null;

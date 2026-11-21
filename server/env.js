@@ -5,7 +5,7 @@ function exactOrigin(value) {
   try { const url = new URL(value); return url.origin === value && !url.username && !url.password ? url : null; } catch { return null; }
 }
 
-// The Clerk Frontend API host is encoded in the publishable key (same derivation World Builder uses).
+// The Clerk Frontend API host is encoded in the publishable key.
 export function clerkIssuer(publishableKey) {
   try {
     if (!/^pk_(test|live)_[A-Za-z0-9_-]+$/.test(publishableKey)) return '';

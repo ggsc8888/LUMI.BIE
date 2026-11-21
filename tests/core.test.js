@@ -27,10 +27,10 @@ test('sealed values open only with the same secret and purpose', () => {
 });
 
 test('blocked terms match whole ASCII words and any CJK occurrence', () => {
-  const terms = ['GIN', 'SEA', '白模', 'world model'];
-  assert.deepEqual(leakHits({ body: 'We begin again. Research season.' }, terms), []);
-  assert.deepEqual(leakHits({ body: 'Meet gin by the sea.', tags: ['#世界白模'] }, terms), ['GIN', 'SEA', '白模']);
-  assert.deepEqual(leakHits({ title: 'A World Model demo' }, terms), ['world model']);
+  const terms = ['ACE', 'ART', '蓝鲸', 'blue whale'];
+  assert.deepEqual(leakHits({ body: 'We race to the start. Space for parties.' }, terms), []);
+  assert.deepEqual(leakHits({ body: 'Meet ace by the art.', tags: ['#一头蓝鲸'] }, terms), ['ACE', 'ART', '蓝鲸']);
+  assert.deepEqual(leakHits({ title: 'A Blue Whale demo' }, terms), ['blue whale']);
 });
 
 test('only admins manage product lines; posts need an existing line and platform', async () => {
@@ -66,7 +66,7 @@ test('approval needs every confirmation, and editing the words takes it back', a
 
 test('a blocked term can never be confirmed or approved', async () => {
   const store = await seeded();
-  const leaked = await putDoc(store, admin(), 'posts', 'p1', { body: 'Built on Cindy.', ckLeak: true, ckMedia: true });
+  const leaked = await putDoc(store, admin(), 'posts', 'p1', { body: 'Built on Orca.', ckLeak: true, ckMedia: true });
   assert.equal(leaked.ckLeak, false);
   await rejects(putDoc(store, admin(), 'posts', 'p1', { status: 'approved' }), 409, 'GATES');
 });
@@ -187,7 +187,7 @@ test('importing the old 发布台 export replays approvals through the same rule
     posts: {
       ok: { ...draft(), status: 'approved', ckLeak: true, ckMedia: true },
       blocked: { ...draft(), assets: ['a1'], status: 'approved', ckLeak: true, ckMedia: true },
-      leaky: { ...draft(), body: 'About Cindy', status: 'published', ckLeak: true, ckMedia: true },
+      leaky: { ...draft(), body: 'About Orca', status: 'published', ckLeak: true, ckMedia: true },
     },
   });
   assert.equal(out.imported.posts, 3);

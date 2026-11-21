@@ -9,7 +9,7 @@ import { backendFor, tenantStore } from '../server/store.js';
 
 const verify = createVerifier();
 
-// One function, one `do` parameter per action (the same shape as World Builder's /api/auth?action=).
+// One function, one `do` parameter per action.
 export default handler(async (request, response) => {
   const params = query(request), action = params.get('do') || '', config = settings();
   if (action === 'config') {
